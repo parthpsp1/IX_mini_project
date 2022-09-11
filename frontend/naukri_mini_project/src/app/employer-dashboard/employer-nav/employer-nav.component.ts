@@ -10,6 +10,7 @@ import { TokenService } from 'src/app/core/services/token.service';
 export class EmployerNavComponent implements OnInit {
 
   imageSrc= '../../../assets/website_logo.png';
+  websiteName = "Job Portal"
 
   constructor(private token: TokenService, private route: Router) { }
 

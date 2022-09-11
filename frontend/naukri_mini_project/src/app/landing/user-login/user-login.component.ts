@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/core/services/data.service';
 import { TokenService } from 'src/app/core/services/token.service';
@@ -18,8 +18,8 @@ export class UserLoginComponent implements OnInit {
   ngOnInit(): void {
 
     this.user_form = this.form_builder.group({
-      username: [''],
-      password: [''],
+      username: ['',[Validators.required]],
+      password: ['',[Validators.required]],
     });
   }
 
@@ -33,12 +33,15 @@ export class UserLoginComponent implements OnInit {
         alert("User Logged In");
         this.token.setToken(login_user.token);
         this.router.navigate(['home/jobs']);
-
       }
     },
       error => {
         alert("Invalid User Login Details");
       }
     );
+  }
+
+  get FormControls(){
+    return this.user_form.controls;
   }
 }

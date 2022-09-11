@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
   imageSrc= '../../../assets/website_logo.png';
+  websiteName = "Job Portal";
   
   constructor() { }
 

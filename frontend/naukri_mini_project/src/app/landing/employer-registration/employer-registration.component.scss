@@ -1,12 +1,10 @@
 .form {
     display: flex;
     flex-direction: column;
-    height: calc(80vh - 20vh);
     justify-content: center;
     align-items: center;
 }
 
 .form-container{
-    padding: 10px;
     width: 50%;
 }

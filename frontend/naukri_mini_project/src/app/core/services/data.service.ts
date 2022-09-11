@@ -23,7 +23,7 @@ export class DataService {
   //User
 
   registerUser(registerUser: string): Observable<any> {
-    return this.httpclient.post(this.baseUserRegistrationAPI, registerUser)
+    return this.httpclient.post("https://localhost:44303/api/UserAuthentication/registerUser", registerUser)
   }
 
   loginUser(loginUser: string): Observable<any> {

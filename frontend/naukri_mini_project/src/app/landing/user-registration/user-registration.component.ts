@@ -17,62 +17,72 @@ export class UserRegistrationComponent implements OnInit {
   ngOnInit(): void {
 
     this.user_registration_form = this.form.group({
-      username: [''],
-      // [Validators.required, Validators.minLength(2),Validators.maxLength(10)]],
-      email: [''],
-      // [
-      //   Validators.required,
-      //   Validators.pattern("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")
-      // ]],
+      username: ['',
+      [
+        Validators.required, 
+        Validators.minLength(2),
+        Validators.maxLength(10)
+      ]],
+      email: ['',
+      [
+        Validators.required,
+        Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")
+      ]],
       password: [''],
-      firstName: [''],
-      // [
-        // Validators.required,
-        // Validators.minLength(2),
-        // Validators.maxLength(10),
-        // Validators.pattern("[a-zA-Z]+$")]],
-      lastName: [''],
-      // [
-      //   Validators.required,
-      //   Validators.minLength(2),
-      //   Validators.maxLength(10),
-      //   Validators.pattern("[a-zA-Z]+$")]],
-      phoneNumber: [''],
-      // [
-        // Validators.required,
-        // Validators.minLength(10),
-        // Validators.maxLength(10),
-        // Validators.pattern("^[0-9]*$")]],
-      alternatePhoneNumber: [''],
-      // [
-      //   Validators.minLength(10),
-      //   Validators.maxLength(10),
-      //   Validators.pattern("^[0-9]*$")]],
-      // tenthPercentage: [''],
-      //   Validators.minLength(2),
-      //   Validators.maxLength(5),
-      //   Validators.pattern("^((?!0)\d{1,10}|0|\.\d{1,2})($|\.$|\.\d{1,2}$)")],
-      tenthPercentage: [''],
-      twelthPercentage: [''],
-        // Validators.maxLength(5),
-        // Validators.minLength(2),
-        // Validators.pattern("^((?!0)\d{1,10}|0|\.\d{1,2})($|\.$|\.\d{1,2}$)")],
-      diplomaPercentage: [''],
-        // Validators.minLength(2),
-        // Validators.maxLength(5),
-        // Validators.pattern("^((?!0)\d{1,10}|0|\.\d{1,2})($|\.$|\.\d{1,2}$)")],
-      bachlorsPercentage: [''],
-        // Validators.minLength(2),
-        // Validators.maxLength(5),
-        // Validators.pattern("^((?!0)\d{1,10}|0|\.\d{1,2})($|\.$|\.\d{1,2}$)")],
-      mastersPercentage: [''],
-        // Validators.minLength(2),
-        // Validators.maxLength(5),
-        // Validators.pattern("^((?!0)\d{1,10}|0|\.\d{1,2})($|\.$|\.\d{1,2}$)")],
-      doctoratePhDPercentage: [''],
-        // Validators.minLength(2),
-        // Validators.maxLength(5),
-        // Validators.pattern("^((?!0)\d{1,10}|0|\.\d{1,2})($|\.$|\.\d{1,2}$)")],
+      firstName: ['',
+      [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(10),
+        Validators.pattern("[a-zA-Z]+$")
+      ]],
+      lastName: ['',
+      [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(10),
+        Validators.pattern("[a-zA-Z]+$")
+      ]],
+      phoneNumber: ['',
+      [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(10),
+        Validators.pattern("^[0-9]*$")
+      ]],
+      alternatePhoneNumber: ['',
+      [
+        Validators.minLength(10),
+        Validators.maxLength(10),
+        Validators.pattern("^[0-9]*$")
+      ]],
+      tenthPercentage: ['',
+      [
+        Validators.maxLength(2),
+        Validators.pattern("^[0-9]*$")
+      ]],
+      twelthPercentage: ['',
+      [
+        Validators.maxLength(2),
+        Validators.pattern("^[0-9]*$")
+      ]],
+      diplomaPercentage: ['',
+      [
+        Validators.maxLength(2),
+        Validators.pattern("^[0-9]*$")
+      ]],
+      bachlorsPercentage: ['',[
+        Validators.maxLength(2),
+        Validators.pattern("^[0-9]*$")
+      ]],
+      mastersPercentage: ['',[
+        Validators.maxLength(2),
+        Validators.pattern("^[0-9]*$")
+      ]],
+      doctoratePhDPercentage: ['',[
+        Validators.maxLength(2),
+        Validators.pattern("^[0-9]*$")
+      ]],
       certification: ['']
     })
   }

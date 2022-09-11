@@ -7,14 +7,13 @@
       <input type="text" class="form-control" id="Username"
         placeholder="Enter Username" formControlName="username">
       </div>
-    <div class="alert alert-danger my-2" *ngIf="getFormControls['username']?.errors?.['required'] && (getFormControls['username']?.touched || getFormControls['username']?.dirty)">Username cannot be empty!</div>
-    <br>
+    <div class="alert alert-danger my-2" *ngIf="FormControls['username']?.errors?.['required'] && (FormControls['username']?.touched || FormControls['username']?.dirty)">Username cannot be empty!</div>
     <div class="form-group">
       <label for="Password">Password</label>
       <input type="password" class="form-control" id="Password" placeholder="Enter Password"
         formControlName="password">
     </div>
-    <div class="alert alert-danger my-2" *ngIf="getFormControls['password']?.errors?.['required'] && (getFormControls['password']?.touched || getFormControls['password']?.dirty)">Password cannot be empty!</div>
+    <div class="alert alert-danger my-2" *ngIf="FormControls['password']?.errors?.['required'] && (FormControls['password']?.touched || FormControls['password']?.dirty)">Password cannot be empty!</div>
     <br>
     <button type="submit" class="black-white-button-small" (click)="employerLogin()">Login</button>
     <br>

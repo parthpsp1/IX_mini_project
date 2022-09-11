@@ -41,7 +41,7 @@ export class EmployerLoginComponent implements OnInit {
     )
   }
 
-  get getFormControls(){
+  get FormControls(){
     return this.employer_form.controls;
   }
 }
