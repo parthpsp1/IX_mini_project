@@ -1,0 +1,76 @@
+<div class="container form-container">
+    <h1 class="text-center"><strong>User Registration</strong></h1>
+    <br>
+    <form [formGroup]="user_registration_form">
+        <div class="form-group">
+            <label for="Username">Username</label>
+            <input type="text" class="form-control" id="Username" placeholder="Enter Username" formControlName="username">
+            <div class="alert alert-danger my-2" *ngIf="formControls['username']?.errors?.['required'] && (formControls['username']?.touched || formControls['username']?.dirty)">Username cannot be empty!</div>
+            <br>
+            <label for="First Name">First Name</label>
+            <input type="text" class="form-control" id="First Name" placeholder="Enter First Name"
+                formControlName="firstName">
+
+            <br>
+            <label for="Last Name">Last Name</label>
+            <input type="text" class="form-control" id="Last Name" placeholder="Enter Last Name"
+                formControlName="lastName">
+
+            <br>
+            <label for="Email">Email</label>
+            <input type="email" class="form-control" id="Email" placeholder="Enter Email" formControlName="email">
+
+            <br>
+            <label for="Password">Password</label>
+            <input type="password" class="form-control" id="Password" placeholder="Enter Password"
+                formControlName="password">
+
+            <br>
+            <label for="Phone Number">Phone Number</label>
+            <input type="text" class="form-control" id="Phone Number" placeholder="Enter Phone Number"
+                formControlName="phoneNumber">
+
+            <br>
+            <label for="Alternate Phone Number">Alternate Phone Number</label>
+            <input type="text" class="form-control" id="Alternate Phone Number"
+                placeholder="Enter Alternate Phone Number" formControlName="alternatePhoneNumber">
+
+            <br>
+            <label for="10th Percentage">10th Percentage</label>
+            <input type="text" class="form-control" id="10th Percentage" placeholder="Enter 10th Percentage"
+                formControlName="tenthPercentage">
+
+            <br>
+            <label for="12th Percentag">12th Percentage</label>
+            <input type="text" class="form-control" id="12th Percentag" placeholder="Enter 12th Percentage"
+                formControlName="twelthPercentage">
+
+            <br>
+            <label for="Diploma Percentage">Diploma Percentage</label>
+            <input type="text" class="form-control" id="Diploma Percentage" placeholder="Enter Diploma Percentage"
+                formControlName="diplomaPercentage">
+
+            <br>
+            <label for="Bachlors Percentage">Bachlors Percentage</label>
+            <input type="text" class="form-control" id="Bachlors Percentage" placeholder="Enter Bachlors Percentage"
+                formControlName="bachlorsPercentage">
+
+            <br>
+            <label for="Masters Percentage">Masters Percentage</label>
+            <input type="text" class="form-control" id="Masters Percentage" placeholder="Enter Masters Percentage"
+                formControlName="mastersPercentage">
+
+            <br>
+            <label for="Doctorate / Ph.D Percentage">Doctorate / Ph.D Percentage</label>
+            <input type="text" class="form-control" id="Doctorate / Ph.D Percentage"
+                placeholder="Enter Masters Percentage" formControlName="doctoratePhDPercentage">
+
+            <br>
+            <label for="Certification">Certification</label>
+            <input type="text" class="form-control" id="Certification" placeholder="Enter Certification"
+                formControlName="certification">
+        </div>
+        <br>
+        <button type="submit" class="black-white-button-small" (click)=" userLogin()">Register</button>
+    </form>
+</div>

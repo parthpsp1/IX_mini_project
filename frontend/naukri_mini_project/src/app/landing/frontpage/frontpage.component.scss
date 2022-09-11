@@ -1,0 +1,19 @@
+.hero{
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.hero-title{
+    letter-spacing: 0.1rem;
+}
+
+.hero-keyword{
+    padding: 0 0.4rem 0 0.8rem;
+    background-color: yellow;
+}
+
+.hero-buttons-div{
+    display: flex;
+}

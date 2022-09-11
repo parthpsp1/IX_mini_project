@@ -1,0 +1,20 @@
+<h1 class="text-center">Profile</h1>
+
+<div class="user-profile-card-container">
+    <div class="card" *ngFor="let element of user_profile">
+        <div class="card-body">
+          <p class="card-text">Username: <strong>{{element.username}}</strong></p>
+          <p class="card-text">First Name: <strong>{{element.firstName}}</strong></p>
+          <p class="card-text">Last Name: <strong>{{element.lastName}}</strong></p>
+          <p class="card-text">Phone Number: <strong>{{element.phoneNumber}}</strong></p>
+          <p class="card-text">Alternate Phone Number: <strong>{{element.alternatePhoneNumber}}</strong></p>
+          <p class="card-text">10th Percentage: <strong>{{element.tenthPercentage}}{{percentangeSymbol}}</strong></p>
+          <p class="card-text">12th Percentage: <strong>{{element.twelthPercentage}}{{percentangeSymbol}}</strong></p>
+          <p class="card-text">Diploma Percentage: <strong>{{element.diplomaPercentage}}{{percentangeSymbol}}</strong></p>
+          <p class="card-text">Bachlors Percentage: <strong>{{element.bachlorsPercentage}}{{percentangeSymbol}}</strong></p>
+          <p class="card-text">Masters Percentage: <strong>{{element.mastersPercentage}}{{percentangeSymbol}}</strong></p>
+          <p class="card-text">Doctorate/PhD Percentage: <strong>{{element.doctoratePhDPercentage}}{{percentangeSymbol}}</strong></p>
+          <p class="card-text">Certification: <strong>{{element.certification}}</strong></p>
+        </div>
+    </div>
+  </div>

@@ -1,0 +1,28 @@
+#website-footer-logo {
+    height: 150px;
+    padding: 10px;
+    width: auto;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+}
+
+.flex-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.footer-links {
+    list-style-type: none;
+    font-weight: 400;
+    padding: 1px;
+    cursor: pointer;
+}
+
+#social-media {
+    margin-bottom: 10px;
+}

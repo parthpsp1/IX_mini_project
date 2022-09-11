@@ -1,0 +1,16 @@
+<h1 class="text-center">Jobs</h1>
+
+<div class="job-card-container">
+  <div class="card" *ngFor="let element of jobs">
+      <div class="card-body">
+          <h5 class="card-title"><strong>{{element.title}}</strong></h5>
+          <p class="card-description"> <strong> Description:</strong> {{element.description}}</p>
+          <p class="card-address"><strong>Address:</strong> {{element.address}}</p>
+          <p class="card-contact"><strong>Contact:</strong> {{element.personOfContact}}</p>
+          <p class="card-pay"><strong>Pay Range:</strong> {{rupee_symbol}} {{element.payRange}} {{lakh_symbol}}</p>
+          <div class="apply-button-div">
+          <button class="black-white-button-small">Apply</button>
+        </div>
+    </div>
+  </div>
+</div>

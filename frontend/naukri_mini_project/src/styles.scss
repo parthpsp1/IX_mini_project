@@ -1,0 +1,89 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+@import 'https://fonts.googleapis.com/css?family=Poppins';
+
+
+body{
+    font-family: 'Poppins' !important;
+}
+.nav-link{
+    color: black !important;
+    padding: 1rem;
+}
+
+.nav-link:hover{
+    background-color: black;
+    color: white !important;
+    border-radius: 2rem;
+}
+
+input{
+    padding-left: 1rem !important;
+    margin-top: 0.2rem !important;
+    border: 1px solid black !important;
+    border-radius: 1rem;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+label{
+    padding: 0 0 0.4rem 0;
+    border-radius: 0.6rem;
+    letter-spacing: 0.1rem;
+}
+
+#website-logo {
+    height: auto;
+    width: 50px;
+    cursor: pointer;
+}
+
+.logout {
+    cursor: pointer;
+}
+
+.black-white-button{
+    font-size: 1.2rem;
+    color: white;
+    background-color: black;
+    border: 1 solid black;
+    border-radius: 4px;
+    margin-right: 10px;
+    margin-top: 40px;
+    padding: 8px 18px 8px 18px;
+    letter-spacing: 1px;
+    outline: 0;
+}
+
+.black-white-button:hover{
+    transition: 0.2s;
+    color: black;
+    background-color: white;
+    border: 1 solid black;
+    box-shadow: 3px 2px 1px black;
+    outline: 0;
+}
+
+.black-white-button-small{
+    font-size: 1rem;
+    color: white;
+    background-color: black;
+    border: 1 solid black;
+    border-radius: 4px;
+    margin-right: 10px;
+    margin-top: 4px;
+    padding: 8px 10px 8px 10px;
+    letter-spacing: 1px;
+    outline: 0;
+}
+
+.black-white-button-small:hover{
+    transition: 0.2s;
+    color: black;
+    background-color: white;
+    border: 1 solid black;
+    box-shadow: 3px 2px 1px black;
+    outline: 0;
+}

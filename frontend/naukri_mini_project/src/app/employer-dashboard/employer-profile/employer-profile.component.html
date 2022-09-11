@@ -1,0 +1,16 @@
+
+<h1 class="text-center">Profile</h1>
+
+<div class="user-profile-card-container">
+    <div class="card" *ngFor="let element of employer_profile">
+        <div class="card-body">
+          <p class="card-text">Username: <strong>{{element.username}}</strong></p>
+          <p class="card-text">Company Name: <strong>{{element.companyName}}</strong></p>
+          <p class="card-text">Details: <strong>{{element.details}}</strong></p>
+          <p class="card-text">Email: <strong>{{element.email}}</strong></p>
+          <p class="card-text">Phone Number: <strong>{{element.phoneNumber}}</strong></p>
+          <p class="card-text">Alternate Phone Number: <strong>{{element.alternatePhoneNumber}}</strong></p>
+          <p class="card-text">Category: <strong>{{element.category}}</strong></p>
+        </div>
+    </div>
+  </div>
