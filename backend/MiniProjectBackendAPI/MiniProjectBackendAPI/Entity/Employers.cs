@@ -8,8 +8,6 @@ namespace MiniProjectBackendAPI.Entity
     {
         public int Id { get; set; }
 
-        //public string  UserName { get; set; }
-
         [ForeignKey("AuthenticateUser")]
         public string EmployerId { get; set; }
         public AuthenticateUser AuthenticateUser{ get; set; }
