@@ -28,13 +28,13 @@ namespace MiniProjectBackendAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Jobs(JobsModel jobsModel)
+        public IActionResult Jobs(Jobs jobsModel)
         {
             return Ok(_jobService.Jobs(jobsModel));
         }
 
         [HttpPut]
-        public IActionResult Jobs(JobsModel jobsModel , int id)
+        public IActionResult Jobs(Jobs jobsModel , int id)
         {
             return Ok(_jobService.Jobs(jobsModel, id));
         }

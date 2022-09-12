@@ -9,7 +9,7 @@ using MiniProjectBackendAPI.Data;
 
 namespace MiniProjectBackendAPI.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(JobPortalDbContext))]
     [Migration("20220911091550_removed_email_field")]
     partial class removed_email_field
     {

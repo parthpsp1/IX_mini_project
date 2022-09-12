@@ -29,7 +29,7 @@ namespace MiniProjectBackendAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<JobPortalDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<IUserService, UserService>();
@@ -77,12 +77,12 @@ namespace MiniProjectBackendAPI
             });
 
             //Database Connection (Entity Framework)
-            services.AddDbContext<ApplicationDbContext>(
+            services.AddDbContext<JobPortalDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             //For Identity  
             services.AddIdentity<AuthenticateUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<JobPortalDbContext>()
                 .AddDefaultTokenProviders();
 
             //Adding Authentication

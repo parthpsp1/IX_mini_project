@@ -6,7 +6,7 @@ namespace MiniProjectBackendAPI.Service
 {
     public interface IJobsAppliedService
     {
-        IEnumerable<JobsAppliedModel> JobsApplied();
+        IEnumerable<JobsApplied> JobsApplied();
     }
 
     public class JobsAppliedService : IJobsAppliedService
@@ -17,13 +17,13 @@ namespace MiniProjectBackendAPI.Service
         {
             _jobsAppliedDA = jobsAppliedDA;
         }
-        public IEnumerable<JobsAppliedModel> JobsApplied()
+        public IEnumerable<JobsApplied> JobsApplied()
         {
             var get_all_jobs_applied = _jobsAppliedDA.JobsApplied();
-            List<JobsAppliedModel> applied_job_list = new();
+            List<JobsApplied> applied_job_list = new();
             foreach(var element in get_all_jobs_applied)
             {
-                applied_job_list.Add(new JobsAppliedModel
+                applied_job_list.Add(new JobsApplied
                 {
                     JobsAppliedID = element.JobsAppliedID,
                     JobID = element.JobID,

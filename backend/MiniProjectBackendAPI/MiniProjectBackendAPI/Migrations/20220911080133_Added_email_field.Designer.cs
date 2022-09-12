@@ -9,7 +9,7 @@ using MiniProjectBackendAPI.Data;
 
 namespace MiniProjectBackendAPI.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(JobPortalDbContext))]
     [Migration("20220911080133_Added_email_field")]
     partial class Added_email_field
     {

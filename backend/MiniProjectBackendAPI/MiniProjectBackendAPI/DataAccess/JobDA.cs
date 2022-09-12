@@ -8,39 +8,39 @@ namespace MiniProjectBackendAPI.DataAccess
 {
     public interface IJobDA
     {
-        IEnumerable<Jobs> Jobs();
-        Jobs Jobs(int id);
-        Task<Jobs> Jobs(Jobs jobs);
-        Jobs Jobs(Jobs jobs, int id);
-        Jobs Remove(int id);
+        IEnumerable<Job> Jobs();
+        Job Jobs(int id);
+        Task<Job> Jobs(Job jobs);
+        Job Jobs(Job jobs, int id);
+        Job Remove(int id);
     }
 
     public class JobDA : IJobDA
     {
-        private readonly ApplicationDbContext _context;
+        private readonly JobPortalDbContext _context;
 
-        public JobDA(ApplicationDbContext context)
+        public JobDA(JobPortalDbContext context)
         {
             _context = context;
         }
-        public IEnumerable<Jobs> Jobs()
+        public IEnumerable<Job> Jobs()
         {
             return _context.Jobs.ToList();
         }
 
-        public Jobs Jobs(int id)
+        public Job Jobs(int id)
         {
             return _context.Jobs.FirstOrDefault(element => element.JobID == id);
         }
 
-        public async Task<Jobs> Jobs(Jobs jobs)
+        public async Task<Job> Jobs(Job jobs)
         {
             var add_job = await _context.Jobs.AddAsync(jobs);
             _context.SaveChanges();
             return add_job.Entity;
         }
 
-        public Jobs Jobs(Jobs jobs, int id)
+        public Job Jobs(Job jobs, int id)
         {
             var update_job = _context.Jobs.Where(element => element.JobID == id).ToList();
             foreach(var element in update_job)
@@ -61,7 +61,7 @@ namespace MiniProjectBackendAPI.DataAccess
             return jobs;
         }
 
-        public Jobs Remove(int id)
+        public Job Remove(int id)
         {
             var remove_job = _context.Jobs.Where(element => element.JobID == id).FirstOrDefault();
             if(remove_job.JobID == id)

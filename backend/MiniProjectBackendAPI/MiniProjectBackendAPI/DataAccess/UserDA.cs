@@ -19,10 +19,10 @@ namespace MiniProjectBackendAPI.DataAccess
     public class UserDA : IUserDA
     {
 
-        private readonly ApplicationDbContext _context;
+        private readonly JobPortalDbContext _context;
         private readonly UserManager<AuthenticateUser> _userManager;
 
-        public UserDA(ApplicationDbContext context, UserManager<AuthenticateUser> userManager)
+        public UserDA(JobPortalDbContext context, UserManager<AuthenticateUser> userManager)
         {
             _userManager = userManager;
             _context = context;

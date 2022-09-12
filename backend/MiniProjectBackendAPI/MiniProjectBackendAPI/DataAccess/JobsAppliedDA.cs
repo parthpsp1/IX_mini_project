@@ -7,18 +7,18 @@ namespace MiniProjectBackendAPI.DataAccess
 {
     public interface IJobsAppliedDA
     {
-        IEnumerable<JobsApplied> JobsApplied();
+        IEnumerable<JobApplied> JobsApplied();
     }
 
     public class JobsAppliedDA : IJobsAppliedDA
     {
-        private readonly ApplicationDbContext _context;
+        private readonly JobPortalDbContext _context;
 
-        public JobsAppliedDA(ApplicationDbContext context)
+        public JobsAppliedDA(JobPortalDbContext context)
         {
             _context = context;
         }
-        public IEnumerable<JobsApplied> JobsApplied()
+        public IEnumerable<JobApplied> JobsApplied()
         {
             return _context.JobsApplied.ToList();
         }

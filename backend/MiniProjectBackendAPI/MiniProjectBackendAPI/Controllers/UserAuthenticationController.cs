@@ -35,11 +35,11 @@ namespace MiniProjectBackendAPI.Controllers
 
         [HttpPost]
         [Route("registerUser")]
-        public async Task<IActionResult> Register(UserRegistrationModel model)
+        public async Task<IActionResult> Register(UserRegistration model)
         {
             var userExists = await _userManager.FindByNameAsync(model.Username);
             if (userExists != null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User already exists!" });
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
 
             AuthenticateUser user = new()
             {
@@ -60,22 +60,22 @@ namespace MiniProjectBackendAPI.Controllers
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
 
             if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
                 await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
             if (!await _roleManager.RoleExistsAsync(UserRoles.User))
                 await _roleManager.CreateAsync(new IdentityRole(UserRoles.User));
-            return Ok(new ResponseModel { Status = "Success", Message = "User created successfully!" });
+            return Ok(new Response { Status = "Success", Message = "User created successfully!" });
         }
 
         [HttpPost]
         [Route("registerEmployer")]
-        public async Task<IActionResult> RegisterEmployer(EmployerRegistrationModel model)
+        public async Task<IActionResult> RegisterEmployer(EmployerRegistration model)
         {
             var userExists = await _userManager.FindByNameAsync(model.Username);
             if (userExists != null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User already exists!" });
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
 
             AuthenticateUser user = new()
             {
@@ -87,7 +87,7 @@ namespace MiniProjectBackendAPI.Controllers
 
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
 
             //if (!await _roleManager.RoleExistsAsync(UserRoles.employerExecutive))
             //    await _roleManager.CreateAsync(new IdentityRole(UserRoles.employerExecutive));
@@ -101,7 +101,7 @@ namespace MiniProjectBackendAPI.Controllers
             await _roleManager.CreateAsync(new IdentityRole(UserRoles.employerExecutive));
             await _userManager.AddToRoleAsync(user, UserRoles.employerExecutive);
 
-            EmployerModel employerModel = new()
+            Employer employerModel = new()
             {
                 Username = user.UserName,
                 EmployerId = user.Id,
@@ -113,17 +113,17 @@ namespace MiniProjectBackendAPI.Controllers
                 Details = model.Details
             };
             await _employerService.Employer(employerModel);
-            return Ok(new ResponseModel { Status = "Success", Message = "User created successfully!" });
+            return Ok(new Response { Status = "Success", Message = "User created successfully!" });
             //return StatusCode(StatusCodes.Status500InternalServerError);
         }
 
         [HttpPost]
         [Route("registerAdmin")]
-        public async Task<IActionResult> RegisterAdmin(AdminRegistrationModel model)
+        public async Task<IActionResult> RegisterAdmin(AdminRegistration model)
         {
             var userExists = await _userManager.FindByNameAsync(model.Username);
             if (userExists != null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User already exists!" });
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
 
             AuthenticateUser user = new()
             {
@@ -134,7 +134,7 @@ namespace MiniProjectBackendAPI.Controllers
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
 
             if (!await _roleManager.RoleExistsAsync(UserRoles.employerExecutive))
                 await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
@@ -142,12 +142,12 @@ namespace MiniProjectBackendAPI.Controllers
                 await _roleManager.CreateAsync(new IdentityRole(UserRoles.User));
             if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
                 await _userManager.AddToRoleAsync(user, UserRoles.Admin);
-            return Ok(new ResponseModel { Status = "Success", Message = "User created successfully!" });
+            return Ok(new Response { Status = "Success", Message = "User created successfully!" });
         }
 
         [HttpPost]
         [Route("loginUser")]
-        public async Task<IActionResult> Login(UserLoginModel model)
+        public async Task<IActionResult> Login(UserLogin model)
         {
             var user = await _userManager.FindByNameAsync(model.Username);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
@@ -187,7 +187,7 @@ namespace MiniProjectBackendAPI.Controllers
 
         [HttpPost]
         [Route("loginAdmin")]
-        public async Task<IActionResult> LoginAdmin(AdminLoginModel model)
+        public async Task<IActionResult> LoginAdmin(AdminLogin model)
         {
             var user = await _userManager.FindByNameAsync(model.Username);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
@@ -226,7 +226,7 @@ namespace MiniProjectBackendAPI.Controllers
 
         [HttpPost]
         [Route("loginEmployer")]
-        public async Task<IActionResult> LoginEmployer(EmployerLoginModel model)
+        public async Task<IActionResult> LoginEmployer(EmployerLogin model)
         {
             var employer = await _userManager.FindByNameAsync(model.Username);
             if (employer != null && await _userManager.CheckPasswordAsync(employer, model.Password))

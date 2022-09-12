@@ -32,6 +32,6 @@ namespace MiniProjectBackendAPI.Authentication
         [Column(TypeName = "decimal(5,2)")]
         public decimal? DoctoratePhDPercentage { get; set; }
         public string Certification { get; set; }
-        public List<JobsApplied> JobsApplied { get; set; }
+        public List<JobApplied> JobsApplied { get; set; }
     }
 }

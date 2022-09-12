@@ -9,7 +9,7 @@ using MiniProjectBackendAPI.Data;
 
 namespace MiniProjectBackendAPI.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(JobPortalDbContext))]
     [Migration("20220912065623_JobsApplied")]
     partial class JobsApplied
     {

@@ -31,13 +31,13 @@ namespace MiniProjectBackendAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Users(UsersModel usersModel)
+        public IActionResult Users(Users usersModel)
         {
             return Ok(_userService.Users(usersModel));
         }
 
         [HttpPut]
-        public IActionResult Users(UsersModel usersModel, string id)
+        public IActionResult Users(Users usersModel, string id)
         {
             return Ok(_userService.Users(usersModel, id));
         }

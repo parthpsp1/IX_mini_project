@@ -8,40 +8,40 @@ namespace MiniProjectBackendAPI.DataAccess
 {
     public interface IEmployerDA
     {
-        IEnumerable<Employers> Employer();
-        Employers Employers(string id);
-        Task<Employers> Employers(Employers employers);
-        Employers Employers(Employers employers, string id);
-        Employers Remove(string id);
+        IEnumerable<Employer> Employer();
+        Employer Employers(string id);
+        Task<Employer> Employers(Employer employers);
+        Employer Employers(Employer employers, string id);
+        Employer Remove(string id);
     }
 
     public class EmployerDA : IEmployerDA
     {
-        private readonly ApplicationDbContext _context;
+        private readonly JobPortalDbContext _context;
 
-        public EmployerDA(ApplicationDbContext context)
+        public EmployerDA(JobPortalDbContext context)
         {
             _context = context;
         }
 
-        public IEnumerable<Employers> Employer()
+        public IEnumerable<Employer> Employer()
         {
             return _context.Employers.ToList();
         }
 
-        public Employers Employers(string id)
+        public Employer Employers(string id)
         {
             return _context.Employers.FirstOrDefault(element => element.EmployerId == id);
         }
 
-        public async Task<Employers> Employers(Employers employers)
+        public async Task<Employer> Employers(Employer employers)
         {
             var add_employer = await _context.Employers.AddAsync(employers);
             _context.SaveChanges();
             return add_employer.Entity;
         }
 
-        public Employers Employers(Employers employers, string id)
+        public Employer Employers(Employer employers, string id)
         {
             var update_employer = _context.Employers.Where(element => element.EmployerId == id).ToList();
             foreach (var element in update_employer)
@@ -62,7 +62,7 @@ namespace MiniProjectBackendAPI.DataAccess
             return employers;
         }
 
-        public Employers Remove(string id)
+        public Employer Remove(string id)
         {
             var remove_employer = _context.Employers.Where(element => element.EmployerId == id).FirstOrDefault();
             if (remove_employer.EmployerId == id)

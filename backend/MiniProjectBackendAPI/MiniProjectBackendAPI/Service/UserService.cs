@@ -8,11 +8,11 @@ namespace MiniProjectBackendAPI.Service
 {
     public interface IUserService
     {
-        IEnumerable<UsersModel> Users(string id);
+        IEnumerable<Users> Users(string id);
         //UsersModel Users(string id);
-        Task<UsersModel> Users(UsersModel users);
-        UsersModel Users(UsersModel users, string id);
-        UsersModel Remove(string id);
+        Task<Users> Users(Users users);
+        Users Users(Users users, string id);
+        Users Remove(string id);
     }
 
     public class UserService : IUserService
@@ -23,13 +23,13 @@ namespace MiniProjectBackendAPI.Service
         {
             _userDA = userDA;
         }
-        public IEnumerable<UsersModel> Users(string id)
+        public IEnumerable<Users> Users(string id)
         {
             var get_all_users = _userDA.Users(id);
-            List<UsersModel> user_list = new();
+            List<Users> user_list = new();
             foreach (var element in get_all_users)
             {
-                user_list.Add(new UsersModel
+                user_list.Add(new Users
                 {
                     Id = element.Id,
                     Username = element.UserName,
@@ -49,7 +49,7 @@ namespace MiniProjectBackendAPI.Service
             }
             return user_list;
         }
-        public UsersModel Remove(string id)
+        public Users Remove(string id)
         {
             var remove_user = _userDA.Users(id);
             if (remove_user == null)
@@ -58,13 +58,13 @@ namespace MiniProjectBackendAPI.Service
             }
             else
             {
-                return new UsersModel
+                return new Users
                 {
                 };
             }
         }
 
-        public async Task<UsersModel> Users(UsersModel users)
+        public async Task<Users> Users(Users users)
         {
             var new_user = new AuthenticateUser
             {
@@ -82,7 +82,7 @@ namespace MiniProjectBackendAPI.Service
             };
 
             var add_new_user = await _userDA.Users(new_user);
-            return new UsersModel
+            return new Users
             {
                 FirstName = add_new_user.FirstName
             };
@@ -101,7 +101,7 @@ namespace MiniProjectBackendAPI.Service
         //    }
         //}
 
-        public UsersModel Users(UsersModel users, string id)
+        public Users Users(Users users, string id)
         {
             var update_user = new AuthenticateUser
             {
@@ -120,7 +120,7 @@ namespace MiniProjectBackendAPI.Service
                 Certification = users.Certification
             };
             var updated_user = _userDA.Users(update_user, id);
-            return new UsersModel
+            return new Users
             {
                 FirstName = updated_user.FirstName
             };
