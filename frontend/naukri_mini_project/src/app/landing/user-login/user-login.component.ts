@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { DataService } from 'src/app/core/services/data.service';
 import { TokenService } from 'src/app/core/services/token.service';
 
@@ -13,7 +14,7 @@ export class UserLoginComponent implements OnInit {
 
   user_form: FormGroup = new FormGroup({});
 
-  constructor(private data_service: DataService, private form_builder: FormBuilder, private router: Router, private token: TokenService) { }
+  constructor(private toast: ToastrService, private data_service: DataService, private form_builder: FormBuilder, private router: Router, private token: TokenService) { }
 
   ngOnInit(): void {
 

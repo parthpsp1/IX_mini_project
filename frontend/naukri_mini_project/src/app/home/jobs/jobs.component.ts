@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { DataService } from 'src/app/core/services/data.service';
 import { TokenService } from 'src/app/core/services/token.service';
 
@@ -14,11 +15,15 @@ export class JobsComponent implements OnInit {
   lakh_symbol = "LPA";
   rupee_symbol = "₹";
 
-  constructor(private data: DataService, private token: TokenService, private route: Router) { }
+  constructor(private toast: ToastrService, private data: DataService, private token: TokenService, private route: Router) { }
 
   ngOnInit(): void {
     this.data.getJobs().subscribe(data => {
       this.jobs = data
     })
+  }
+
+  showToast(){
+    this.toast.success("Applied for this job sucessfully");
   }
 }

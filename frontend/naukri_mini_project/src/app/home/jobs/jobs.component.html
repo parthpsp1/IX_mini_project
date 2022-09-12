@@ -9,7 +9,7 @@
           <p class="card-contact"><strong>Contact:</strong> {{element.personOfContact}}</p>
           <p class="card-pay"><strong>Pay Range:</strong> {{rupee_symbol}} {{element.payRange}} {{lakh_symbol}}</p>
           <div class="apply-button-div">
-          <button class="black-white-button-small">Apply</button>
+          <button class="black-white-button-small" (click)="showToast()">Apply</button>
         </div>
     </div>
   </div>
