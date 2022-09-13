@@ -22,25 +22,25 @@ namespace MiniProjectBackendAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Jobs(int id)
+        public IActionResult Job(int id)
         {
-            return Ok(_jobService.Jobs(id));
+            return Ok(_jobService.Job(id));
         }
 
         [HttpPost]
-        public IActionResult Jobs(Jobs jobsModel)
+        public IActionResult Job(Jobs job)
         {
-            return Ok(_jobService.Jobs(jobsModel));
+            return Ok(_jobService.Job(job));
         }
 
         [HttpPut]
-        public IActionResult Jobs(Jobs jobsModel , int id)
+        public IActionResult UpdateJob(Jobs job)
         {
-            return Ok(_jobService.Jobs(jobsModel, id));
+            return Ok(_jobService.UpdateJob(job));
         }
 
         [HttpDelete]
-        public IActionResult RemoveUser(int id)
+        public IActionResult RemoveJob(int id)
         {
             return Ok(_jobService.Remove(id));
         }

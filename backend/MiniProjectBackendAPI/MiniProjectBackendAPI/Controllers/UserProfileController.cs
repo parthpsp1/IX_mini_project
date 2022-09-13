@@ -22,7 +22,7 @@ namespace MiniProjectBackendAPI.Controllers
         [HttpGet]
         public async Task<Object> GetUserProfile()
         {
-            string UserId = User.Claims.First(id => id.Type == "UserID").Value;
+            string UserId = User.Claims.First(id => id.Type == "UserId").Value;
             var UserProfile = await _userManager.FindByIdAsync(UserId);
             return new
             {

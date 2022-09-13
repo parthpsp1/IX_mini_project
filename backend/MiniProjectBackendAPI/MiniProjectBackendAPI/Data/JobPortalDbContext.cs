@@ -17,10 +17,10 @@ namespace MiniProjectBackendAPI.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<JobApplied>().HasOne(e => e.Jobs).WithMany(ue => ue.JobsApplied)
-                .HasForeignKey(e => e.JobID).OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(e => e.JobId).OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<JobApplied>().HasOne(e => e.Users).WithMany(ue => ue.JobsApplied)
-                 .HasForeignKey(e => e.UserID);
+                 .HasForeignKey(e => e.UserId);
 
             base.OnModelCreating(builder);
         }

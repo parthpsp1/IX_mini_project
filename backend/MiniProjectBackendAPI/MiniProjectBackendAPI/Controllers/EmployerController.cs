@@ -30,15 +30,15 @@ namespace MiniProjectBackendAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Employer(Employer employeeModel)
+        public IActionResult Employer(Employer employerModel)
         {
-            return Ok(_employerService.Employer(employeeModel));
+            return Ok(_employerService.Employer(employerModel));
         }
 
         [HttpPut]
-        public IActionResult Employers(Employer employeeModel, string id)
+        public IActionResult Employers(Employer employerModel)
         {
-            return Ok(_employerService.Employer(employeeModel, id));
+            return Ok(_employerService.Employer(employerModel));
         }
 
         [HttpDelete]

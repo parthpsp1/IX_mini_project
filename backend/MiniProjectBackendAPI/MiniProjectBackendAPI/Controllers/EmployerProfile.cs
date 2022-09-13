@@ -23,8 +23,8 @@ namespace MiniProjectBackendAPI.Controllers
         [HttpGet]
         public async Task<Object> GetEmployerProfile(int id)
         {
-            string employerID = User.Claims.First(id => id.Type == "UserID").Value;
-            var employerProfile = await _userManager.FindByIdAsync(employerID);
+            string EmployerId = User.Claims.First(id => id.Type == "UserId").Value;
+            var employerProfile = await _userManager.FindByIdAsync(EmployerId);
             return new
             {
                 employerProfile.UserName,

@@ -6,14 +6,14 @@ namespace MiniProjectBackendAPI.Model
 {
     public class JobsApplied
     {
-        public int JobsAppliedID { get; set; }
+        public int JobsAppliedId { get; set; }
 
         [ForeignKey("Jobs")]
-        public int JobID { get; set; }
+        public int JobId { get; set; }
         public Job Jobs { get; set; }
 
         [ForeignKey("Users")]
-        public string UserID { get; set; }
+        public string UserId { get; set; }
         public AuthenticateUser Users { get; set; }
         public string Status { get; set; }
     }

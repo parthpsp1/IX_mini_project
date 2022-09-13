@@ -2,17 +2,16 @@
 using MiniProjectBackendAPI.Entity;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace MiniProjectBackendAPI.DataAccess
 {
     public interface IEmployerDA
     {
-        IEnumerable<Employer> Employer();
-        Employer Employers(string id);
-        Task<Employer> Employers(Employer employers);
-        Employer Employers(Employer employers, string id);
-        Employer Remove(string id);
+        IEnumerable<Employer> Employers();
+        Employer Employer(string id);
+        int Employer(Employer employer);
+        bool UpdateEmployer(Employer employer);
+        bool Remove(string id);
     }
 
     public class EmployerDA : IEmployerDA
@@ -24,54 +23,52 @@ namespace MiniProjectBackendAPI.DataAccess
             _context = context;
         }
 
-        public IEnumerable<Employer> Employer()
+        public IEnumerable<Employer> Employers()
         {
             return _context.Employers.ToList();
         }
 
-        public Employer Employers(string id)
+        public Employer Employer(string id)
         {
             return _context.Employers.FirstOrDefault(element => element.EmployerId == id);
         }
 
-        public async Task<Employer> Employers(Employer employers)
+        public int Employer(Employer employer)
         {
-            var add_employer = await _context.Employers.AddAsync(employers);
+            _context.Employers.Add(employer);
             _context.SaveChanges();
-            return add_employer.Entity;
+            return employer.Id;
         }
 
-        public Employer Employers(Employer employers, string id)
+        public bool UpdateEmployer(Employer employer)
         {
-            var update_employer = _context.Employers.Where(element => element.EmployerId == id).ToList();
-            foreach (var element in update_employer)
+            var existingEmployer = _context.Employers.FirstOrDefault(element => element.EmployerId == employer.EmployerId);
+            if (existingEmployer != null)
             {
-                if (element.EmployerId == id)
-                {
-                    element.CompanyName = employers.CompanyName;
-                    element.Details = employers.Details;
-                    element.PhoneNumber = employers.PhoneNumber;
-                    element.AlternatePhoneNumber = element.AlternatePhoneNumber;
-                    element.Category = employers.Category;
-
-                    var updated_employer = _context.Employers.Update(element);
-                    _context.SaveChanges();
-                    return updated_employer.Entity;
-                }
-            }
-            return employers;
-        }
-
-        public Employer Remove(string id)
-        {
-            var remove_employer = _context.Employers.Where(element => element.EmployerId == id).FirstOrDefault();
-            if (remove_employer.EmployerId == id)
-            {
-                _context.Employers.Remove(remove_employer);
+                existingEmployer.CompanyName = employer.CompanyName;
+                existingEmployer.Details = employer.Details;
+                existingEmployer.PhoneNumber = employer.PhoneNumber;
+                existingEmployer.AlternatePhoneNumber = employer.AlternatePhoneNumber;
+                existingEmployer.Category = employer.Category;
                 _context.SaveChanges();
-                return remove_employer;
+                return true;
             }
-            return remove_employer;
+            else
+            {
+            return false;
+            }
+        }
+
+        public bool Remove(string id)
+        {
+            var removeEmployer = _context.Employers.FirstOrDefault(element => element.EmployerId == id);
+            if (removeEmployer != null)
+            {
+                _context.Employers.Remove(removeEmployer);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }

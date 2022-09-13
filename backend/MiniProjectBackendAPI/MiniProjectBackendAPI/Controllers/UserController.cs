@@ -26,8 +26,8 @@ namespace MiniProjectBackendAPI.Controllers
         [HttpGet]
         public IActionResult Users()
         {
-            string userId = User.Claims.First(o => o.Type == "UserID").Value;
-            return Ok(_userService.Users(userId));
+            string UserId = User.Claims.First(o => o.Type == "UserId").Value;
+            return Ok(_userService.Users(UserId));
         }
 
         [HttpPost]

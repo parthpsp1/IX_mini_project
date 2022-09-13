@@ -112,7 +112,7 @@ namespace MiniProjectBackendAPI.Controllers
                 Category = model.Category,
                 Details = model.Details
             };
-            await _employerService.Employer(employerModel);
+            _employerService.Employer(employerModel);
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });
             //return StatusCode(StatusCodes.Status500InternalServerError);
         }
@@ -157,7 +157,7 @@ namespace MiniProjectBackendAPI.Controllers
                 var authClaims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.UserName),
-                    new Claim("UserID", user.Id.ToString()),
+                    new Claim("UserId", user.Id.ToString()),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 };
 
@@ -165,6 +165,7 @@ namespace MiniProjectBackendAPI.Controllers
                 {
                     authClaims.Add(new Claim(ClaimTypes.Role, userRole));
                 }
+                
 
                 var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
 
@@ -179,7 +180,8 @@ namespace MiniProjectBackendAPI.Controllers
                 return Ok(new
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token),
-                    expiration = token.ValidTo
+                    expiration = token.ValidTo,
+                    roles = userRoles
                 });
             }
             return Unauthorized();
@@ -236,7 +238,7 @@ namespace MiniProjectBackendAPI.Controllers
                 var authClaims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, employer.UserName),
-                    new Claim("UserID", employer.Id.ToString()),
+                    new Claim("UserId", employer.Id.ToString()),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 };
 
@@ -269,5 +271,14 @@ namespace MiniProjectBackendAPI.Controllers
             }
             return Unauthorized();
         }
+
+        //[HttpGet]
+
+        //public IActionResult GetRoles()
+        //{
+        //    var user = User.FindFirstValue(ClaimTypes.Name).ToString();
+        //    var roles = _userManager.GetRolesAsync(user);
+        //    return user;
+        //}
     }
 }

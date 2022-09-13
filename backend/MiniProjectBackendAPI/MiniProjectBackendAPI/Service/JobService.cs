@@ -9,10 +9,10 @@ namespace MiniProjectBackendAPI.Service
     public interface IJobService
     {
         IEnumerable<Jobs> Jobs();
-        Jobs Jobs(int id);
-        Task<Jobs> Jobs(Jobs jobsModel);
-        Jobs Jobs(Jobs jobsModel, int id);
-        Jobs Remove(int id);
+        Jobs Job(int id);
+        int Job(Jobs job);
+        bool UpdateJob(Jobs job);
+        bool Remove(int id);
     }
 
     public class JobService : IJobService
@@ -23,16 +23,17 @@ namespace MiniProjectBackendAPI.Service
         {
             _jobDA = jobDA;
         }
+
         public IEnumerable<Jobs> Jobs()
         {
-            var get_all_jobs = _jobDA.Jobs();
-            List<Jobs> job_list = new();
-            foreach(var element in get_all_jobs)
+            var getAllJobs = _jobDA.Jobs();
+            List<Jobs> jobList = new();
+            foreach(var element in getAllJobs)
             {
-                job_list.Add(new Jobs 
+                jobList.Add(new Jobs 
                 { 
-                    JobID = element.JobID,
-                    EmployerID = element.EmployerID,
+                    JobId = element.JobId,
+                    EmployerId = element.EmployerId,
                     Title = element.Title,
                     Address = element.Address,
                     Description = element.Description,
@@ -40,75 +41,67 @@ namespace MiniProjectBackendAPI.Service
                     PersonOfContact = element.PersonOfContact,
                 });
             }
-            return job_list;
+            return jobList;
         }
 
-        public Jobs Jobs(int id)
+        public Jobs Job(int id)
         {
-            var get_job_by_id = _jobDA.Jobs(id);
-            if (get_job_by_id == null)
+            var existingJob = _jobDA.Job(id);
+            if (existingJob == null)
                 return null;
             else
             {
                 return new Jobs
                 {
-                    JobID = get_job_by_id.JobID,
+                    JobId = existingJob.JobId,
+                    Title = existingJob.Title,
+                    Description = existingJob.Description,
+                    Address = existingJob.Address,
+                    PersonOfContact = existingJob.PersonOfContact,
+                    PayRange = existingJob.PayRange,
+                    EmployerId = existingJob.EmployerId,
                 };
             }
         }
 
-        public Jobs Jobs(Jobs jobsModel, int id)
+        public int Job(Jobs job)
         {
-            var update_job = new Job
+            var newJob = new Job
             {
-                JobID = jobsModel.JobID,
-                EmployerID = jobsModel.EmployerID,
-                Title = jobsModel.Title,
-                Address = jobsModel.Address,
-                Description = jobsModel.Description,
-                PayRange = jobsModel.PayRange,
-                PersonOfContact = jobsModel.PersonOfContact,
+                EmployerId = job.EmployerId,
+                Title = job.Title,
+                Address = job.Address,
+                Description = job.Description,
+                PayRange = job.PayRange,
+                PersonOfContact = job.PersonOfContact,
             };
 
-            var updated_job = _jobDA.Jobs(update_job, id);
-            return new Jobs
-            {
-                JobID = updated_job.JobID
-            };
+        _jobDA.Job(newJob);
+        return 0;
         }
 
-        public async Task<Jobs> Jobs(Jobs jobsModel)
+        public bool UpdateJob(Jobs job)
         {
-            var new_job = new Job
+            var updatedJob = new Job
             {
-                JobID = jobsModel.JobID,
-                EmployerID = jobsModel.EmployerID,
-                Title = jobsModel.Title,
-                Address = jobsModel.Address,
-                Description = jobsModel.Description,
-                PayRange = jobsModel.PayRange,
-                PersonOfContact = jobsModel.PersonOfContact,
+                JobId = job.JobId,
+                EmployerId = job.EmployerId,
+                Title = job.Title,
+                Address = job.Address,
+                Description = job.Description,
+                PayRange = job.PayRange,
+                PersonOfContact = job.PersonOfContact,
             };
-
-            var add_new_job = await _jobDA.Jobs(new_job);
-            return new Jobs
-            {
-                JobID = add_new_job.JobID
-            };
+            _jobDA.UpdateJob(updatedJob);
+            return true;
         }
 
-        public Jobs Remove(int id)
+        public bool Remove(int id)
         {
-            var remove_job = _jobDA.Remove(id);
-            if (remove_job == null)
-                return null;
-            else
-            {
-                return new Jobs
-                {
-                    JobID = remove_job.JobID,
-                };
-            }
+            var removeJob = _jobDA.Remove(id);
+            if (removeJob)
+                return true;
+            return false;
         }
     }
 }

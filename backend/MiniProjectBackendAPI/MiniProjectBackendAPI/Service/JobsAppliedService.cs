@@ -25,9 +25,9 @@ namespace MiniProjectBackendAPI.Service
             {
                 applied_job_list.Add(new JobsApplied
                 {
-                    JobsAppliedID = element.JobsAppliedID,
-                    JobID = element.JobID,
-                    UserID = element.UserID,
+                    JobsAppliedId = element.JobsAppliedId,
+                    JobId = element.JobId,
+                    UserId = element.UserId,
                     Status = element.Status
                 });
             }

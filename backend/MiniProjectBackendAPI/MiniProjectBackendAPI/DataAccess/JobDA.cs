@@ -2,17 +2,16 @@
 using MiniProjectBackendAPI.Entity;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace MiniProjectBackendAPI.DataAccess
 {
     public interface IJobDA
     {
         IEnumerable<Job> Jobs();
-        Job Jobs(int id);
-        Task<Job> Jobs(Job jobs);
-        Job Jobs(Job jobs, int id);
-        Job Remove(int id);
+        Job Job(int id);
+        int Job(Job jobs);
+        bool UpdateJob(Job jobs);
+        bool Remove(int id);
     }
 
     public class JobDA : IJobDA
@@ -28,49 +27,48 @@ namespace MiniProjectBackendAPI.DataAccess
             return _context.Jobs.ToList();
         }
 
-        public Job Jobs(int id)
+        public Job Job(int id)
         {
-            return _context.Jobs.FirstOrDefault(element => element.JobID == id);
+            return _context.Jobs.FirstOrDefault(element => element.JobId == id);
         }
 
-        public async Task<Job> Jobs(Job jobs)
+        public int Job(Job job)
         {
-            var add_job = await _context.Jobs.AddAsync(jobs);
+            _context.Jobs.Add(job);
             _context.SaveChanges();
-            return add_job.Entity;
+            return job.JobId;
         }
 
-        public Job Jobs(Job jobs, int id)
+        public bool UpdateJob(Job job)
         {
-            var update_job = _context.Jobs.Where(element => element.JobID == id).ToList();
-            foreach(var element in update_job)
+            var existingJob = _context.Jobs.FirstOrDefault(element => element.JobId == job.JobId);
+            if(existingJob != null)
             {
-                if(element.JobID == id)
-                {
-                    element.EmployerID = jobs.EmployerID;
-                    element.Title = jobs.Title;
-                    element.Description = jobs.Description;
-                    element.PersonOfContact = jobs.PersonOfContact;
-                    element.PayRange = jobs.PayRange;
-
-                    var updated_job = _context.Jobs.Update(element);
-                    _context.SaveChanges();
-                    return updated_job.Entity;
-                }
-            }
-            return jobs;
-        }
-
-        public Job Remove(int id)
-        {
-            var remove_job = _context.Jobs.Where(element => element.JobID == id).FirstOrDefault();
-            if(remove_job.JobID == id)
-            {
-                _context.Jobs.Remove(remove_job);
+                existingJob.EmployerId = job.EmployerId;
+                existingJob.Title = job.Title;
+                existingJob.Description = job.Description;
+                existingJob.Address = job.Address;
+                existingJob.PersonOfContact = job.PersonOfContact;
+                existingJob.PayRange = job.PayRange;
                 _context.SaveChanges();
-                return remove_job;
+                return true;
             }
-            return remove_job;
+            else
+            {
+            return false;
+            }
+        }
+
+        public bool Remove(int id)
+        {
+            var removeJob = _context.Jobs.FirstOrDefault(element => element.JobId == id);
+            if(removeJob != null)
+            {
+                _context.Jobs.Remove(removeJob);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }
